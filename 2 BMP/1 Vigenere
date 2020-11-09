@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include"VIGENERE.h"
+main(){
+	FILE *fin,*fkey,*fout;
+	fin=fopen("graph2.bmp","rb");
+	if(fin==NULL){
+		printf("明文读取失败\n");
+		return(1);
+	}
+	fkey=fopen("key.dat","wb+");
+	if(fkey==NULL){
+		printf("密钥读取失败\n");
+		return(1);
+	}
+	fout=fopen("C:\\Users\\ASUS\\Desktop\\encode.bmp","wb");
+	if(fout==NULL){
+		printf("密文读取失败\n");
+		return(1);
+	}
+	keygen(fkey,16);
+	fseek(fkey,0,SEEK_SET);
+	VigenereEncode(fin,fkey,fout);
+	fclose(fin);
+	fclose(fkey);
+	fclose(fout);
+}
