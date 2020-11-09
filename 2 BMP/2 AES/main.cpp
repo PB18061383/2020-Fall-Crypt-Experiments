@@ -1,3 +1,4 @@
+//根据AES算法对graph.bmp加密 
 #include<stdio.h>
 #include"AES.h"
 main(){
