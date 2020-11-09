@@ -1,3 +1,4 @@
+//根据Vigenere算法对graph.bmp加密 
 #include<stdio.h>
 #include"VIGENERE.h"
 main(){
