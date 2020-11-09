@@ -2,7 +2,7 @@
 #include"VIGENERE.h"
 main(){
 	FILE *fin,*fkey,*fout;
-	fin=fopen("graph2.bmp","rb");
+	fin=fopen("graph.bmp","rb");
 	if(fin==NULL){
 		printf("明文读取失败\n");
 		return(1);
