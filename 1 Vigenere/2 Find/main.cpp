@@ -1,0 +1,124 @@
+//把plt1.txt和plt2.txt按照Vigenere算法加密，并且找到相应的密钥使得密文相同。密钥存储在key1.txt和key2.txt中,密文存储在cip.txt中 
+//为了便于识别,每个txt文本在文本结束之后都会有一个'#'作为结束符 
+//额外条件为密钥无长度限制 
+#include<stdio.h>
+#include"STRINGHEAP.h"
+#include"VIGENERE.h"
+main(){
+	int err,flag;
+	FILE *fkey1,*fkey2,*fplt1,*fplt2,*fcip;
+	String *skey1,*skey2,*splt1,*splt2,*scip,*res,*res1,*res2;
+	//初始化
+	fkey1=fopen("key1.txt","r");
+	if(fkey1==NULL){
+		printf("key1.txt读取失败\n");
+		return(1);
+	}
+	fkey2=fopen("key2.txt","w");
+	if(fkey2==NULL){
+		printf("key2.txt读取失败\n");
+		return(1);
+	}
+	fplt1=fopen("plt1.txt","r");
+	if(fplt1==NULL){
+		printf("plt1.txt读取失败\n");
+		return(1);
+	}
+	fplt2=fopen("plt2.txt","r");
+	if(fplt2==NULL){
+		printf("plt2.txt读取失败\n");
+		return(1);
+	}
+	fcip=fopen("cip.txt","w");
+	if(fcip==NULL){
+		printf("cip.txt读取失败\n");
+		return(1);
+	}
+	err=InitString(skey1);
+	if(err!=0){
+		printf("字符串初始化失败\n");
+		return(2);
+	}
+	err=InitString(skey2);
+	if(err!=0){
+		printf("字符串初始化失败\n");
+		return(2);
+	}
+	err=InitString(splt1);
+	if(err!=0){
+		printf("字符串初始化失败\n");
+		return(2);
+	}
+	err=InitString(splt2);
+	if(err!=0){
+		printf("字符串初始化失败\n");
+		return(2);
+	}
+	err=InitString(scip);
+	if(err!=0){
+		printf("字符串初始化失败\n");
+		return(2);
+	}
+	err=InitString(res);
+	if(err!=0){
+		printf("字符串初始化失败\n");
+		return(2);
+	}
+	err=InitString(res1);
+	if(err!=0){
+		printf("字符串初始化失败\n");
+		return(2);
+	}
+	err=InitString(res2);
+	if(err!=0){
+		printf("字符串初始化失败\n");
+		return(2);
+	}
+	//读取字符串 
+	FileScanString(splt1,fplt1);
+	FileScanString(splt2,fplt2);
+	printf("明文读取成功\n\n");
+	FileScanString(skey1,fkey1); 
+	printf("密钥读取成功\n\n");
+	//准备加密 
+	if(splt1->length!=splt2->length){
+		//明文不等长 
+		printf("明文不等长\n");
+		return(3);
+	}
+	VigenereEncode(skey1,splt1,scip);
+	VigenereKey(skey2,splt2,scip);
+	//输出结果
+	printf("结果如下：\n\n");
+	printf("密文：\n");
+	PrintString(scip);
+	printf("\n\n");
+	printf("密钥：\n\n");
+	printf("密钥1：\n");
+	PrintString(skey1);
+	printf("\n");
+	printf("密钥2：\n");
+	PrintString(skey2);
+	printf("\n\n");
+	printf("加密结果：\n\n");
+	printf("cip：\n");
+	PrintString(scip);
+	printf("\n\n");
+	FilePrintString(skey1,fkey1);
+	printf("key1.txt文件保存成功\n\n");
+	FilePrintString(skey2,fkey2);
+	printf("key2.txt文件保存成功\n\n");
+	FilePrintString(scip,fcip);
+	printf("cip.txt文件保存成功\n\n");
+	//善后工作 
+	fclose(fkey1);
+	fclose(fkey2);
+	fclose(fplt1);
+	fclose(fplt2);
+	fclose(fcip);
+	DestroyString(skey1);
+	DestroyString(skey2);
+	DestroyString(splt1);
+	DestroyString(splt2);
+	DestroyString(scip);
+}
