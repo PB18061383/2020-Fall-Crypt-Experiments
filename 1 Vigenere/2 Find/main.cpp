@@ -1,6 +1,6 @@
-//æŠŠplt1.txtå’Œplt2.txtæŒ‰ç…§Vigenereç®—æ³•åŠ å¯†ï¼Œå¹¶ä¸”æ‰¾åˆ°ç›¸åº”çš„å¯†é’¥ä½¿å¾—å¯†æ–‡ç›¸åŒã€‚å¯†é’¥å­˜å‚¨åœ¨key1.txtå’Œkey2.txtä¸­,å¯†æ–‡å­˜å‚¨åœ¨cip.txtä¸­ 
-//ä¸ºäº†ä¾¿äºè¯†åˆ«,æ¯ä¸ªtxtæ–‡æœ¬åœ¨æ–‡æœ¬ç»“æŸä¹‹åéƒ½ä¼šæœ‰ä¸€ä¸ª'#'ä½œä¸ºç»“æŸç¬¦ 
-//é¢å¤–æ¡ä»¶ä¸ºå¯†é’¥æ— é•¿åº¦é™åˆ¶ 
+//°Ñplt1.txtºÍplt2.txt°´ÕÕVigenereËã·¨¼ÓÃÜ£¬²¢ÇÒÕÒµ½ÏàÓ¦µÄÃÜÔ¿Ê¹µÃÃÜÎÄÏàÍ¬¡£ÃÜÔ¿´æ´¢ÔÚkey1.txtºÍkey2.txtÖĞ,ÃÜÎÄ´æ´¢ÔÚcip.txtÖĞ 
+//ÎªÁË±ãÓÚÊ¶±ğ,Ã¿¸ötxtÎÄ±¾ÔÚÎÄ±¾½áÊøÖ®ºó¶¼»áÓĞÒ»¸ö'#'×÷Îª½áÊø·û 
+//¶îÍâÌõ¼şÎªÃÜÔ¿ÎŞ³¤¶ÈÏŞÖÆ 
 #include<stdio.h>
 #include"STRINGHEAP.h"
 #include"VIGENERE.h"
@@ -8,109 +8,109 @@ main(){
 	int err,flag;
 	FILE *fkey1,*fkey2,*fplt1,*fplt2,*fcip;
 	String *skey1,*skey2,*splt1,*splt2,*scip,*res,*res1,*res2;
-	//åˆå§‹åŒ–
+	//³õÊ¼»¯
 	fkey1=fopen("key1.txt","r");
 	if(fkey1==NULL){
-		printf("key1.txtè¯»å–å¤±è´¥\n");
+		printf("key1.txt¶ÁÈ¡Ê§°Ü\n");
 		return(1);
 	}
 	fkey2=fopen("key2.txt","w");
 	if(fkey2==NULL){
-		printf("key2.txtè¯»å–å¤±è´¥\n");
+		printf("key2.txt¶ÁÈ¡Ê§°Ü\n");
 		return(1);
 	}
 	fplt1=fopen("plt1.txt","r");
 	if(fplt1==NULL){
-		printf("plt1.txtè¯»å–å¤±è´¥\n");
+		printf("plt1.txt¶ÁÈ¡Ê§°Ü\n");
 		return(1);
 	}
 	fplt2=fopen("plt2.txt","r");
 	if(fplt2==NULL){
-		printf("plt2.txtè¯»å–å¤±è´¥\n");
+		printf("plt2.txt¶ÁÈ¡Ê§°Ü\n");
 		return(1);
 	}
 	fcip=fopen("cip.txt","w");
 	if(fcip==NULL){
-		printf("cip.txtè¯»å–å¤±è´¥\n");
+		printf("cip.txt¶ÁÈ¡Ê§°Ü\n");
 		return(1);
 	}
 	err=InitString(skey1);
 	if(err!=0){
-		printf("å­—ç¬¦ä¸²åˆå§‹åŒ–å¤±è´¥\n");
+		printf("×Ö·û´®³õÊ¼»¯Ê§°Ü\n");
 		return(2);
 	}
 	err=InitString(skey2);
 	if(err!=0){
-		printf("å­—ç¬¦ä¸²åˆå§‹åŒ–å¤±è´¥\n");
+		printf("×Ö·û´®³õÊ¼»¯Ê§°Ü\n");
 		return(2);
 	}
 	err=InitString(splt1);
 	if(err!=0){
-		printf("å­—ç¬¦ä¸²åˆå§‹åŒ–å¤±è´¥\n");
+		printf("×Ö·û´®³õÊ¼»¯Ê§°Ü\n");
 		return(2);
 	}
 	err=InitString(splt2);
 	if(err!=0){
-		printf("å­—ç¬¦ä¸²åˆå§‹åŒ–å¤±è´¥\n");
+		printf("×Ö·û´®³õÊ¼»¯Ê§°Ü\n");
 		return(2);
 	}
 	err=InitString(scip);
 	if(err!=0){
-		printf("å­—ç¬¦ä¸²åˆå§‹åŒ–å¤±è´¥\n");
+		printf("×Ö·û´®³õÊ¼»¯Ê§°Ü\n");
 		return(2);
 	}
 	err=InitString(res);
 	if(err!=0){
-		printf("å­—ç¬¦ä¸²åˆå§‹åŒ–å¤±è´¥\n");
+		printf("×Ö·û´®³õÊ¼»¯Ê§°Ü\n");
 		return(2);
 	}
 	err=InitString(res1);
 	if(err!=0){
-		printf("å­—ç¬¦ä¸²åˆå§‹åŒ–å¤±è´¥\n");
+		printf("×Ö·û´®³õÊ¼»¯Ê§°Ü\n");
 		return(2);
 	}
 	err=InitString(res2);
 	if(err!=0){
-		printf("å­—ç¬¦ä¸²åˆå§‹åŒ–å¤±è´¥\n");
+		printf("×Ö·û´®³õÊ¼»¯Ê§°Ü\n");
 		return(2);
 	}
-	//è¯»å–å­—ç¬¦ä¸² 
+	//¶ÁÈ¡×Ö·û´® 
 	FileScanString(splt1,fplt1);
 	FileScanString(splt2,fplt2);
-	printf("æ˜æ–‡è¯»å–æˆåŠŸ\n\n");
+	printf("Ã÷ÎÄ¶ÁÈ¡³É¹¦\n\n");
 	FileScanString(skey1,fkey1); 
-	printf("å¯†é’¥è¯»å–æˆåŠŸ\n\n");
-	//å‡†å¤‡åŠ å¯† 
+	printf("ÃÜÔ¿¶ÁÈ¡³É¹¦\n\n");
+	//×¼±¸¼ÓÃÜ 
 	if(splt1->length!=splt2->length){
-		//æ˜æ–‡ä¸ç­‰é•¿ 
-		printf("æ˜æ–‡ä¸ç­‰é•¿\n");
+		//Ã÷ÎÄ²»µÈ³¤ 
+		printf("Ã÷ÎÄ²»µÈ³¤\n");
 		return(3);
 	}
 	VigenereEncode(skey1,splt1,scip);
 	VigenereKey(skey2,splt2,scip);
-	//è¾“å‡ºç»“æœ
-	printf("ç»“æœå¦‚ä¸‹ï¼š\n\n");
-	printf("å¯†æ–‡ï¼š\n");
+	//Êä³ö½á¹û
+	printf("½á¹ûÈçÏÂ£º\n\n");
+	printf("ÃÜÎÄ£º\n");
 	PrintString(scip);
 	printf("\n\n");
-	printf("å¯†é’¥ï¼š\n\n");
-	printf("å¯†é’¥1ï¼š\n");
+	printf("ÃÜÔ¿£º\n\n");
+	printf("ÃÜÔ¿1£º\n");
 	PrintString(skey1);
 	printf("\n");
-	printf("å¯†é’¥2ï¼š\n");
+	printf("ÃÜÔ¿2£º\n");
 	PrintString(skey2);
 	printf("\n\n");
-	printf("åŠ å¯†ç»“æœï¼š\n\n");
-	printf("cipï¼š\n");
+	printf("¼ÓÃÜ½á¹û£º\n\n");
+	printf("cip£º\n");
 	PrintString(scip);
 	printf("\n\n");
 	FilePrintString(skey1,fkey1);
-	printf("key1.txtæ–‡ä»¶ä¿å­˜æˆåŠŸ\n\n");
+	printf("key1.txtÎÄ¼ş±£´æ³É¹¦\n\n");
 	FilePrintString(skey2,fkey2);
-	printf("key2.txtæ–‡ä»¶ä¿å­˜æˆåŠŸ\n\n");
+	printf("key2.txtÎÄ¼ş±£´æ³É¹¦\n\n");
 	FilePrintString(scip,fcip);
-	printf("cip.txtæ–‡ä»¶ä¿å­˜æˆåŠŸ\n\n");
-	//å–„åå·¥ä½œ 
+	printf("cip.txtÎÄ¼ş±£´æ³É¹¦\n\n");
+	//ÉÆºó¹¤×÷ 
 	fclose(fkey1);
 	fclose(fkey2);
 	fclose(fplt1);

@@ -51,8 +51,9 @@ int VigenereDencode(String *skey,String *splt,String *scip){
 int VigenereKey(String *skey,String *splt,String *scip){
 	//用Vigenere加密方式对splt加密成scip寻找密钥，成功返回密钥长，失败返回0
 	int flag1,flag2,err;
-	String *res;
+	String *res,*tmp;
 	InitString(res);
+	InitString(tmp);
 	skey->str=(char *)realloc(skey->str,(STRINGSIZE+(splt->length-STRINGSIZE)/STRINGADDON+1)*STRINGADDON*sizeof(char));
 	skey->length=splt->length;
 	skey->size=splt->size;
@@ -68,8 +69,9 @@ int VigenereKey(String *skey,String *splt,String *scip){
 			}
 		}
 		if(flag2==skey->length/res->length){
-			if(flag2<skey->length){		
-				err=Index(res,skey,res->length*flag2+1);
+			if(flag2*res->length<skey->length){
+				SubString(skey,tmp,flag2*res->length+1,skey->length-flag2*res->length);
+				err=Index(res,tmp,1);
 				if(err==1){
 					StringCopy(skey,res);
 					return(flag1);
@@ -81,6 +83,8 @@ int VigenereKey(String *skey,String *splt,String *scip){
 			}
 		}
 	}
+	DestroyString(res);
+	DestroyString(tmp);
 	return(0);
 }
 #endif 
