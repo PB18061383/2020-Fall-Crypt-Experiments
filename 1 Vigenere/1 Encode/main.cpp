@@ -1,5 +1,5 @@
-//æŠŠplt.txtæŒ‰ç…§key1.txté€šè¿‡Vigenereç®—æ³•åŠ å¯†å­˜å‚¨åˆ°cip1.txt 
-//ä¸ºäº†ä¾¿äºè¯†åˆ«,æ¯ä¸ªtxtæ–‡æœ¬åœ¨æ–‡æœ¬ç»“æŸä¹‹åéƒ½ä¼šæœ‰ä¸€ä¸ª'#'ä½œä¸ºç»“æŸç¬¦ 
+//°Ñplt.txt°´ÕÕkey.txtÍ¨¹ıVigenereËã·¨¼ÓÃÜ´æ´¢µ½cip.txt 
+//ÎªÁË±ãÓÚÊ¶±ğ,Ã¿¸ötxtÎÄ±¾ÔÚÎÄ±¾½áÊøÖ®ºó¶¼»áÓĞÒ»¸ö'#'×÷Îª½áÊø·û 
 #include<stdio.h>
 #include"STRINGHEAP.h"
 #include"VIGENERE.h"
@@ -7,53 +7,53 @@ main(){
 	int err;
 	FILE *fkey,*fplt,*fcip;
 	String *skey,*splt,*scip;
-	//åˆå§‹åŒ– 
+	//³õÊ¼»¯ 
 	fkey=fopen("key.txt","r");
 	if(fkey==NULL){
-		printf("key.txtè¯»å–å¤±è´¥\n");
+		printf("key.txt¶ÁÈ¡Ê§°Ü\n");
 		return(1);
 	}
 	fplt=fopen("plt.txt","r");
 	if(fplt==NULL){
-		printf("plt.txtè¯»å–å¤±è´¥\n");
+		printf("plt.txt¶ÁÈ¡Ê§°Ü\n");
 		return(1);
 	}
 	fcip=fopen("cip.txt","w");
 	if(fcip==NULL){
-		printf("cip.txtè¯»å–å¤±è´¥\n");
+		printf("cip.txt¶ÁÈ¡Ê§°Ü\n");
 		return(1);
 	}
 	err=InitString(skey);
 	if(err!=0){
-		printf("String error\n");
+		printf("×Ö·û´®³õÊ¼»¯Ê§°Ü\n");
 		return(2);
 	}
 	err=InitString(splt);
 	if(err!=0){
-		printf("String error\n");
+		printf("×Ö·û´®³õÊ¼»¯Ê§°Ü\n");
 		return(2);
 	}
 	err=InitString(scip);
 	if(err!=0){
-		printf("String error\n");
+		printf("×Ö·û´®³õÊ¼»¯Ê§°Ü\n");
 		return(2);
 	}
-	//è¯»å–å­—ç¬¦ä¸² 
+	//¶ÁÈ¡×Ö·û´® 
 	FileScanString(skey,fkey);
-	printf("Read key succeed\n\n");
+	printf("ÃÜÔ¿¶ÁÈ¡³É¹¦\n\n");
 	FileScanString(splt,fplt);
-	printf("Read plaintext succeed\n\n");
-	//åŠ å¯†
+	printf("Ã÷ÎÄ¶ÁÈ¡³É¹¦\n\n");
+	//¼ÓÃÜ
 	err=VigenereEncode(skey,splt,scip);
 	if(err!=0){
-		printf("Encode error\n");
+		printf("¼ÓÃÜ³ö´í\n");
 		return(3);
 	}
-	printf("Encode result:\n\n");
+	printf("¼ÓÃÜ½á¹û£º\n\n");
 	PrintString(scip);
 	printf("\n\n");
 	FilePrintString(scip,fcip);
-	printf("The ciphertext has been saved at cip.txt. Please exit to check it\n\n");
+	printf("ÃÜÎÄ´æ´¢ÔÚ cip.txt\n\n");
 	fclose(fkey);
 	fclose(fplt);
 	fclose(fcip);
